@@ -1,5 +1,3 @@
-# Many thanks to http://mnemstudio.org/particle-swarm-tsp-example-1.htm
-
 import random
 import math
 import utils

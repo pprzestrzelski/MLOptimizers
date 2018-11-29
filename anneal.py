@@ -1,5 +1,3 @@
-# Inspired by: many thanks to the author of https://github.com/chncyhn/simulated-annealing-tsp
-
 import math
 import random
 import utils

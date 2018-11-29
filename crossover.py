@@ -1,5 +1,3 @@
-# source: https://github.com/DEAP/deap/blob/master/deap/tools/crossover.py
-
 import random
 
 

@@ -73,7 +73,6 @@ def print_progress_bar(progress, curr_best, curr_worst, target=0.0):
             end="")
 
 
-# Author: https://gist.github.com/payoung/6087046
 def plot_tsp(paths, points, num_iters=1):
     """
     path: List of lists with the different orders in which the nodes are visited
