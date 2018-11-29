@@ -3,6 +3,7 @@
 import random
 import math
 import utils
+from city import City
 
 import crossover
 
@@ -52,29 +53,6 @@ class Particle:
         self.velocity = v
 
 
-class City:
-    def __init__(self, x=0, y=0):
-        self.x = x
-        self.y = y
-
-    def get_x(self):
-        return self.x
-
-    def set_x(self, x):
-        self.x = x
-
-    def get_y(self):
-        return self.y
-
-    def set_y(self, y):
-        self.y = y
-
-    @staticmethod
-    def calculate_distance(city_1, city_2):
-        return math.sqrt(math.pow(math.fabs(city_1.get_x() - city_2.get_x()), 2) +
-                         math.pow(math.fabs(city_1.get_y() - city_2.get_y()), 2))
-
-
 class PSO(object):
     def __init__(self, coords, particle_count=10, v_max=4, max_epochs=1000, target_value=0, debug=False):
         self.particles = []
@@ -122,20 +100,20 @@ class PSO(object):
 
             self.particles.append(new_particle)
 
-    def calculate_fitness(self, cities_indexes):
+    def calculate_fitness(self, path):
         """
         Euclidean distance
-        :param cities_indexes: vector of arranged cities indexes
+        :param path: vector of arranged cities indexes
         :return: euclidean distance between all cities from an array
         """
         fitness = 0.0
         for i in range(self.city_count - 1):
-            city_1 = self.cities[cities_indexes[i]]
-            city_2 = self.cities[cities_indexes[i + 1]]
+            city_1 = self.cities[path[i]]
+            city_2 = self.cities[path[i + 1]]
             fitness += City.calculate_distance(city_1, city_2)
 
-        last_city = cities_indexes[-1]
-        first_city = cities_indexes[0]
+        last_city = path[-1]
+        first_city = path[0]
         fitness += City.calculate_distance(self.cities[last_city], self.cities[first_city])
 
         return fitness
